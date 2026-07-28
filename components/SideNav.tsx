@@ -4,7 +4,7 @@ import { Gauge, Home, IndianRupee, Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export type ViewName = "dashboard" | "home" | "pricing";
+export type ViewName = "dashboard" | "home" | "pricing" | "timeline";
 
 const items = [
   { id: "dashboard" as const, label: "Dashboard", icon: Gauge },

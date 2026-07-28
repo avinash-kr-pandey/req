@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, Download, Share2, Check, MessageSquare, FileText, Award } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BookingModal } from "@/components/BookingModal";
 import { Heading } from "@/components/Heading";
 import { HomeStage } from "@/components/HomeStage";
@@ -12,12 +12,18 @@ import { Pricing } from "@/components/Pricing";
 import { SideNav, type ViewName } from "@/components/SideNav";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { VehicleStage } from "@/components/VehicleStage";
+import { TimelineStage } from "@/components/TimelineStage";
 import { cn } from "@/lib/utils";
 
 export function Experience() {
   const [view, setView] = useState<ViewName | "chat" | "timeline" | "certifications">("dashboard");
   const [menuOpen, setMenuOpen] = useState(false);
   const [plan, setPlan] = useState<string | null>(null);
+  const [showChat, setShowChat] = useState(false);
+
+  useEffect(() => {
+    setShowChat(false);
+  }, [view]);
 
   return (
     <main className="experience dark">
@@ -26,6 +32,35 @@ export function Experience() {
       <div className="grain" />
 
       <div className="experience-container">
+        <AnimatePresence>
+          {showChat && (
+            <motion.div
+              className="chat-overlay-container"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <motion.div
+                className="chat-spotlight"
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={{ opacity: 0.5, scaleY: 1 }}
+                exit={{ opacity: 0, scaleY: 0 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.div
+                className="chat-message-card"
+                initial={{ x: "-150vw", y: "-50%", opacity: 0, scale: 0.9 }}
+                animate={{ x: "-50%", y: "-50%", opacity: 1, scale: 1 }}
+                exit={{ x: "-150vw", y: "-50%", opacity: 0, scale: 0.9 }}
+                transition={{ type: "spring", damping: 25, stiffness: 120, delay: 0.1 }}
+              >
+                <img src="/robot_chat.png" alt="Chat assistant" />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Topbar layout */}
         <div className="topbar">
           <div className="logo-section">
@@ -84,11 +119,11 @@ export function Experience() {
           <div className="right-nav-items">
             <button
               type="button"
-              className={cn("right-nav-item", view === "chat" && "active")}
-              onClick={() => setView("chat")}
+              className={cn("right-nav-item", showChat && "active")}
+              onClick={() => setShowChat((open) => !open)}
               aria-label="Chat support"
             >
-              {view === "chat" && <span className="timeline-tooltip">Chat support</span>}
+              {showChat && <span className="timeline-tooltip">Chat support</span>}
               <span className="right-nav-icon">
                 <MessageSquare size={15} />
               </span>
@@ -132,8 +167,9 @@ export function Experience() {
             {view === "dashboard" && <VehicleStage />}
             {view === "home" && <HomeStage />}
             {view === "pricing" && <Pricing onBook={setPlan} />}
-            {view === "chat" && <CenterPlaceholder title="Chat Support" />}
-            {view === "timeline" && <CenterPlaceholder title="Explore Timeline" />}
+            {view === "timeline" && (
+              <TimelineStage onGoHome={() => setView("home")} />
+            )}
             {view === "certifications" && <CenterPlaceholder title="Certifications" />}
           </motion.div>
         </AnimatePresence>

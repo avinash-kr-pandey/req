@@ -1288,6 +1288,190 @@ button {
   }
 }
 
+/* Pulled timeline and chat features, integrated without replacing dashboard styles. */
+.chat-overlay-container {
+  position: absolute;
+  z-index: 60;
+  inset: 0;
+  pointer-events: none;
+}
+
+.chat-spotlight {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 600px;
+  height: 100%;
+  transform: translateX(-50%);
+  transform-origin: top center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent 80%);
+  filter: blur(40px);
+}
+
+.chat-message-card {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: min(850px, 85vw);
+  height: 280px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 32px;
+  background: #c5c5c5;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+}
+
+.chat-message-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.timeline-stage {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 55%;
+  height: 200px;
+  transform: translate(-50%, -50%);
+}
+
+.timeline-track {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.timeline-line-bg,
+.timeline-line-fg {
+  position: absolute;
+  left: 0;
+  height: 1px;
+  border-bottom: 2px dotted rgba(255, 255, 255, 0.15);
+  background: transparent;
+}
+
+.timeline-line-bg {
+  width: 100%;
+}
+
+.timeline-line-fg {
+  z-index: 2;
+  border-color: #df0509;
+}
+
+.timeline-car-marker {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  display: flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: #111;
+  box-shadow: 0 0 20px rgba(223, 5, 9, 0.4), inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.timeline-car-marker img,
+.timeline-truck img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.timeline-tooltip-card {
+  position: absolute;
+  z-index: 4;
+  bottom: calc(50% + 24px);
+  display: flex;
+  width: 200px;
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  background: linear-gradient(135deg, rgba(80, 80, 80, 0.9), rgba(30, 30, 30, 0.95));
+  clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.timeline-tooltip-card strong {
+  margin-bottom: 4px;
+  color: white;
+  font-size: 13px;
+}
+
+.timeline-tooltip-card small {
+  color: #a0a0a0;
+  font-size: 11px;
+}
+
+.timeline-truck {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  display: flex;
+  width: 400px;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.timeline-truck img {
+  height: auto;
+}
+
+.timeline-thank-you {
+  position: fixed;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.timeline-thank-you h2 {
+  margin-bottom: 24px;
+  color: white;
+  font-size: 4rem;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.timeline-home-btn {
+  padding: 12px 32px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.timeline-home-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+}
+
 @media (max-width: 560px) {
   .topbar {
     top: 18px;
