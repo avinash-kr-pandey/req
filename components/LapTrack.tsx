@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const laps = [
@@ -17,15 +16,14 @@ export function LapTrack({ active = 3 }: { active?: number }) {
         preserveAspectRatio="none"
         aria-hidden="true"
       >
-        <motion.path
+        <path
           d="M0 55 C120 38 230 72 370 45 C510 17 663 48 810 28 C970 5 1088 9 1230 8 C1315 8 1372 4 1440 -22"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
-          strokeDasharray="10 10"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.4, ease: "easeOut" }}
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          strokeDasharray="0 14"
+          opacity="0.5"
         />
       </svg>
       <div className="lap-items">

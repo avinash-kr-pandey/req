@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --font-sans: Montserrat, "Segoe UI", Arial, sans-serif;
   --background: #f2f1ef;
   --foreground: #171515;
   --muted: #676262;
@@ -205,11 +206,11 @@ button {
 .right-action-stack {
   position: absolute;
   z-index: 25;
-  top: 110px;
+  top: 75px;
   right: 25px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .action-circle-btn {
@@ -246,7 +247,7 @@ button {
 .hero-heading {
   position: absolute;
   z-index: 5;
-  top: clamp(100px, 11vh, 125px);
+  top: clamp(90px, 10vh, 110px);
   left: 20%;
   right: 20%;
   text-align: center;
@@ -255,7 +256,7 @@ button {
 .hero-heading h1 {
   margin: 0;
   font-family: var(--font-sans), sans-serif;
-  font-size: clamp(20px, 2.4vw, 32px);
+  font-size: clamp(18px, 2.1vw, 28px);
   font-style: italic;
   font-weight: 900;
   line-height: 1;
@@ -268,17 +269,17 @@ button {
 }
 
 .hero-heading p {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   color: var(--muted);
-  font-size: clamp(11px, 0.9vw, 13px);
+  font-size: clamp(10px, 0.8vw, 12px);
   font-weight: 600;
 }
 
 .hero-heading i {
   display: block;
-  width: 26px;
-  height: 4px;
-  margin: 11px auto 0;
+  width: 20px;
+  height: 3px;
+  margin: 9px auto 0;
   border-radius: 10px;
   background: #df0509;
 }
@@ -294,27 +295,38 @@ button {
 .side-nav {
   position: absolute;
   z-index: 30;
-  left: 54px;
+  left: 94px;
   top: 36%;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  align-items: flex-start;
+  gap: 16px;
 }
 
-.side-nav .nav-item:nth-child(2) {
-  transform: translateX(18px);
+.side-nav .nav-item.middle-item {
+  transform: translateX(-20px);
 }
 
-.nav-arc {
+.nav-arc-svg {
   position: absolute;
-  z-index: -1;
-  top: -20px;
-  left: -24px;
-  width: 80px;
-  height: 280px;
-  border-left: 1px dashed var(--muted);
-  border-radius: 50%;
-  opacity: 0.75;
+  z-index: 1;
+  top: -24px;
+  width: 100px;
+  height: 200px;
+  pointer-events: none;
+}
+
+.side-nav .nav-arc-svg {
+  left: -72px;
+}
+
+.nav-arc-path {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-dasharray: 6 5;
+  opacity: 0.35;
 }
 
 .nav-item {
@@ -328,9 +340,11 @@ button {
 }
 
 .nav-icon {
+  position: relative;
+  z-index: 2;
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 50%;
@@ -379,34 +393,26 @@ button {
 .right-nav-arc-container {
   position: absolute;
   z-index: 30;
-  right: 54px;
+  right: 94px;
   top: 36%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.nav-arc-right {
-  position: absolute;
-  z-index: -1;
-  top: -20px;
-  right: -24px;
-  width: 80px;
-  height: 280px;
-  border-right: 1px dashed var(--muted);
-  border-radius: 50%;
-  opacity: 0.75;
+.right-nav-arc-container .nav-arc-svg {
+  right: -72px;
 }
 
 .right-nav-items {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 16px;
   align-items: flex-end;
 }
 
 .right-nav-items .right-nav-item:nth-child(2) {
-  transform: translateX(-18px);
+  transform: translateX(20px);
 }
 
 .right-nav-item {
@@ -422,9 +428,11 @@ button {
 }
 
 .right-nav-icon {
+  position: relative;
+  z-index: 2;
   display: grid;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 50%;
@@ -516,37 +524,39 @@ button {
   transform: translateX(-50%);
   opacity: 0.54;
   filter: blur(12px);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
   clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
 }
 
 .option-grid {
   position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template: 1fr 1fr / 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  gap: 40px 310px;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+  z-index: 10;
 }
 
 .stage-option {
   position: relative;
   z-index: 3;
-  min-width: 138px;
-  padding: 17px 16px;
-  border: 8px solid rgba(104, 97, 97, 0.22);
-  border-radius: 28px;
+  min-width: 110px;
+  padding: 8px 14px;
+  border: 3px solid rgba(104, 97, 97, 0.22);
+  border-radius: 18px;
   background: rgba(7, 3, 3, 0.86);
   color: #fff;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.4px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .stage-option.selected {
@@ -567,7 +577,7 @@ button {
 .metrics-col {
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 24px;
   z-index: 10;
   pointer-events: auto;
   width: 160px;
@@ -589,7 +599,7 @@ button {
 }
 
 .metric-item-box strong {
-  font-size: clamp(24px, 2.3vw, 36px);
+  font-size: clamp(20px, 1.8vw, 28px);
   font-weight: 800;
   line-height: 1.1;
   color: var(--foreground);
@@ -597,9 +607,9 @@ button {
 }
 
 .metric-item-box span {
-  margin-top: 5px;
+  margin-top: 3px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -610,7 +620,7 @@ button {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: min(270px, 20vw);
+  width: 180px;
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
@@ -755,7 +765,7 @@ button {
   font-size: 12px;
 }
 
-.pricing-card li > span {
+.pricing-card li>span {
   display: grid;
   width: 21px;
   height: 21px;
@@ -772,7 +782,7 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 175px;
+  height: 130px;
   color: #df0509;
   pointer-events: none;
 }
@@ -780,7 +790,7 @@ button {
 .lap-track::before {
   content: "";
   position: absolute;
-  inset: 40px 0 0;
+  inset: 30px 0 0;
   z-index: -1;
   background: linear-gradient(180deg, rgba(112, 0, 3, 0.08), var(--background));
 }
@@ -789,35 +799,53 @@ button {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 105px;
+  height: 75px;
 }
 
 .lap-items {
   position: absolute;
-  inset: 27px 6% 0;
+  inset: 20px 6% 0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   color: var(--foreground);
 }
 
 .lap {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
+  padding-top: 45px;
   opacity: 0.58;
 }
 
+.lap::before {
+  content: "";
+  position: absolute;
+  top: 25px;
+  bottom: 50px;
+  width: 1px;
+  border-left: 1.5px dashed rgba(255, 255, 255, 0.2);
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.lap.active::before {
+  border-left: 1.5px dashed #df0509;
+  opacity: 0.8;
+}
+
 .lap:nth-child(2) {
-  transform: translateY(-8px);
+  transform: translateY(-15px);
 }
 
 .lap:nth-child(3) {
-  transform: translateY(-16px);
+  transform: translateY(-11px);
 }
 
 .lap:nth-child(4) {
-  transform: translateY(-24px);
+  transform: translateY(-34px);
 }
 
 .lap:nth-child(5) {
@@ -831,28 +859,12 @@ button {
 .lap-dot {
   position: absolute;
   top: 6px;
-  width: 25px;
-  height: 25px;
-  border: 8px solid #2c2929;
+  width: 18px;
+  height: 18px;
+  border: 6px solid #2c2929;
   border-radius: 50%;
   background: #777;
   box-sizing: content-box;
-}
-
-.lap:nth-child(2) .lap-dot {
-  top: -2px;
-}
-
-.lap:nth-child(3) .lap-dot {
-  top: -10px;
-}
-
-.lap:nth-child(4) .lap-dot {
-  top: -18px;
-}
-
-.lap:nth-child(5) .lap-dot {
-  top: -26px;
 }
 
 .lap.active .lap-dot {
@@ -862,13 +874,13 @@ button {
 }
 
 .lap b {
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .lap small {
-  margin-top: 7px;
+  margin-top: 5px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 11px;
 }
 
 .modal-backdrop {
@@ -919,7 +931,7 @@ button {
   font-size: 29px;
 }
 
-.booking-modal > p,
+.booking-modal>p,
 .success-state p {
   color: var(--muted);
   font-size: 13px;
@@ -955,7 +967,7 @@ button {
   box-shadow: 0 0 0 3px rgba(223, 5, 9, 0.1);
 }
 
-.booking-modal form > button,
+.booking-modal form>button,
 .success-state button {
   height: 46px;
   border: 0;
@@ -1346,6 +1358,7 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -1353,5 +1366,127 @@ button {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dashboard composition */
+@media (min-width: 851px) {
+  .experience {
+    background: radial-gradient(ellipse at 50% 49%, rgba(78, 68, 68, 0.13), transparent 31%),
+      radial-gradient(circle at 65% 45%, rgba(115, 0, 2, 0.08), transparent 38%), #050505;
+  }
+
+  .ambient-one { width: 940px; left: 50%; top: -455px; transform: translateX(-50%); }
+  .ambient-two { width: 640px; left: 50%; top: -105px; transform: translateX(-50%); }
+  .topbar { top: 12px; left: 15px; right: 15px; }
+  .logo { width: 96px; font-size: 15px; }
+  .logo small { margin-top: 3px; padding-left: 25px; font-size: 4px; letter-spacing: 2.7px; }
+  .logo-swoop { width: 82px; top: -5px; }
+  .back-button-circle { width: 25px; height: 25px; margin-top: 19px; margin-left: -5px; }
+  .theme-toggle-btn { width: 22px; height: 22px; }
+  .theme-toggle-pill { padding: 2px; }
+  .right-action-stack { top: 53px; right: 16px; }
+  .action-circle-btn { width: 25px; height: 25px; }
+  .hero-heading { top: 67px; }
+  .hero-heading h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(25px, 2.7vw, 34px);
+    letter-spacing: -0.7px;
+  }
+  .hero-heading p { margin-top: 10px; font-size: 9px; font-weight: 500; }
+  .hero-heading i { width: 13px; height: 2px; margin-top: 6px; }
+  .view-shell { align-items: flex-start; padding-top: 122px; }
+  .vehicle-stage, .home-stage { width: min(650px, 68vw); height: 265px; }
+  .ring-one { width: 430px; }
+  .ring-two { width: 270px; }
+  .spotlight { top: -55%; width: 150px; height: 155%; opacity: 0.42; filter: blur(10px); }
+  .vehicle-stage-content { padding: 0 60px; }
+  .metrics-col { width: 110px; gap: 22px; }
+  .metric-item-box strong { font-size: 15px; letter-spacing: -0.2px; }
+  .metric-item-box span { margin-top: 2px; font-size: 7px; letter-spacing: 0; }
+  .center-car-portal {
+    width: 172px;
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.2), 0 28px 55px rgba(0, 0, 0, 0.75),
+      inset 0 0 38px rgba(0, 0, 0, 0.7);
+  }
+  .side-nav, .right-nav-arc-container { top: 39%; }
+  .side-nav { left: 70px; gap: 14px; }
+  .right-nav-arc-container { right: 70px; }
+  .right-nav-items { gap: 14px; }
+  .nav-icon, .right-nav-icon { width: 32px; height: 32px; }
+  .side-nav .nav-item.middle-item { transform: translateX(-12px); }
+  .right-nav-items .right-nav-item:nth-child(2) { transform: translateX(12px); }
+  .lap-track { height: 105px; }
+  .lap-track::before {
+    top: 20px;
+    background: linear-gradient(180deg, rgba(115, 0, 3, 0.18), #080505 88%);
+  }
+  .lap-track svg { height: 60px; }
+  .lap-items { inset: 10px 5% 0; }
+  .lap { padding-top: 42px; }
+  .lap-dot { width: 12px; height: 12px; border-width: 5px; }
+  .lap b { font-size: 9px; }
+  .lap small { margin-top: 4px; font-size: 8px; }
+
+  .pricing-grid {
+    top: calc(50% + 6px);
+    left: 50%;
+    bottom: auto;
+    height: min(340px, calc(100svh - 220px));
+    width: min(860px, calc(100vw - 190px));
+    max-width: none;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 16px;
+    transform: translate(-50%, -50%);
+  }
+
+  .pricing-card {
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    padding: clamp(14px, 2.2vh, 24px) 20px;
+    border-radius: 22px;
+    overflow: hidden;
+  }
+
+  .pricing-card h2 {
+    min-height: 24px;
+    font-size: 13px;
+    line-height: 1.25;
+  }
+
+  .price { margin: 4px 0 clamp(8px, 1.7vh, 16px); }
+  .price strong { font-size: clamp(22px, 2.2vw, 30px); }
+  .price span { font-size: 8px; }
+  .plan-action { min-height: 32px; font-size: 10px; }
+
+  .pricing-card ul {
+    gap: clamp(5px, 1.2vh, 11px);
+    margin-top: clamp(10px, 2.2vh, 22px);
+  }
+
+  .pricing-card li {
+    gap: 10px;
+    font-size: 9px;
+    line-height: 1.2;
+  }
+
+  .pricing-card li > span {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+@media (max-width: 850px) {
+  .pricing-grid {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .pricing-card {
+    width: 100%;
+    max-width: 520px;
+    margin-inline: auto;
   }
 }

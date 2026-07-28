@@ -3,9 +3,6 @@
 import { motion } from "framer-motion";
 import { Pause, Play } from "lucide-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-
-const options = ["Customize", "Bodywork", "Paint Job", "Accessories"] as const;
 
 const details = {
   Customize: {
@@ -67,10 +64,8 @@ const details = {
 };
 
 export function VehicleStage() {
-  const [selected, setSelected] =
-    useState<(typeof options)[number]>("Customize");
   const [playing, setPlaying] = useState(false);
-  const data = details[selected];
+  const data = details.Customize;
 
   return (
     <motion.section
@@ -83,20 +78,15 @@ export function VehicleStage() {
       <div className="stage-ring ring-two" />
       <div className="spotlight" />
       
-      <div className="option-grid">
-        {options.map((option) => (
-          <motion.button
-            type="button"
-            key={option}
-            className={cn("stage-option", selected === option && "selected")}
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => setSelected(option)}
-          >
-            {option}
-          </motion.button>
-        ))}
-      </div>
+      {/* Center Car Portrait Circle */}
+      <motion.div
+        className="center-car-portal"
+        animate={playing ? { scale: [1, 1.02, 1] } : { scale: 1 }}
+        transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+      >
+        <div className="car-glow-ring" />
+        <img src="/car.png" alt="Black sports car" className="portal-car-img" />
+      </motion.div>
 
       <div className="vehicle-stage-content">
         {/* Left Metrics */}
@@ -112,16 +102,6 @@ export function VehicleStage() {
           <MetricItem value={data.metricA} label={data.metricALabel} />
           <MetricItem value={data.metricB} label={data.metricBLabel} />
           <MetricItem value={data.metricC} label={data.metricCLabel} />
-        </motion.div>
-
-        {/* Center Car Portrait Circle */}
-        <motion.div
-          className="center-car-portal"
-          animate={playing ? { scale: [1, 1.02, 1] } : { scale: 1 }}
-          transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-        >
-          <div className="car-glow-ring" />
-          <img src="/car.png" alt="Black sports car" className="portal-car-img" />
         </motion.div>
 
         {/* Right Metrics */}

@@ -12,9 +12,10 @@ import { Pricing } from "@/components/Pricing";
 import { SideNav, type ViewName } from "@/components/SideNav";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { VehicleStage } from "@/components/VehicleStage";
+import { cn } from "@/lib/utils";
 
 export function Experience() {
-  const [view, setView] = useState<ViewName>("home");
+  const [view, setView] = useState<ViewName | "chat" | "timeline" | "certifications">("dashboard");
   const [menuOpen, setMenuOpen] = useState(false);
   const [plan, setPlan] = useState<string | null>(null);
 
@@ -23,7 +24,7 @@ export function Experience() {
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <div className="grain" />
-      
+
       <div className="experience-container">
         {/* Topbar layout */}
         <div className="topbar">
@@ -69,22 +70,41 @@ export function Experience() {
 
         {/* Right Navigation Arc */}
         <div className="right-nav-arc-container">
-          <div className="nav-arc-right" />
+          <svg className="nav-arc-svg" viewBox="0 0 100 200" preserveAspectRatio="none">
+            <path d="M 50 0 Q 100 100 50 200" className="nav-arc-path" />
+          </svg>
           <div className="right-nav-items">
-            <button type="button" className="right-nav-item" aria-label="Chat support">
+            <button
+              type="button"
+              className={cn("right-nav-item", view === "chat" && "active")}
+              onClick={() => setView("chat")}
+              aria-label="Chat support"
+            >
+              {view === "chat" && <span className="timeline-tooltip">Chat support</span>}
               <span className="right-nav-icon">
                 <MessageSquare size={15} />
               </span>
             </button>
-            
-            <button type="button" className="right-nav-item active" aria-label="Explore timeline">
-              <span className="timeline-tooltip">Explore timeline</span>
+
+            <button
+              type="button"
+              className={cn("right-nav-item", view === "timeline" && "active")}
+              onClick={() => setView("timeline")}
+              aria-label="Explore timeline"
+            >
+              {view === "timeline" && <span className="timeline-tooltip">Explore timeline</span>}
               <span className="right-nav-icon">
                 <FileText size={15} />
               </span>
             </button>
-            
-            <button type="button" className="right-nav-item" aria-label="Certifications">
+
+            <button
+              type="button"
+              className={cn("right-nav-item", view === "certifications" && "active")}
+              onClick={() => setView("certifications")}
+              aria-label="Certifications"
+            >
+              {view === "certifications" && <span className="timeline-tooltip">Certifications</span>}
               <span className="right-nav-icon">
                 <Award size={15} />
               </span>
@@ -104,6 +124,9 @@ export function Experience() {
             {view === "dashboard" && <VehicleStage />}
             {view === "home" && <HomeStage />}
             {view === "pricing" && <Pricing onBook={setPlan} />}
+            {view === "chat" && <CenterPlaceholder title="Chat Support" />}
+            {view === "timeline" && <CenterPlaceholder title="Explore Timeline" />}
+            {view === "certifications" && <CenterPlaceholder title="Certifications" />}
           </motion.div>
         </AnimatePresence>
 
@@ -111,5 +134,19 @@ export function Experience() {
         <BookingModal plan={plan} onClose={() => setPlan(null)} />
       </div>
     </main>
+  );
+}
+
+function CenterPlaceholder({ title }: { title: string }) {
+  return (
+    <div className="home-stage">
+      <div className="stage-ring ring-one" />
+      <div className="stage-ring ring-two" />
+      <div className="spotlight" />
+      <div className="center-placeholder-card">
+        <h2>{title}</h2>
+        <p>This section is coming soon.</p>
+      </div>
+    </div>
   );
 }

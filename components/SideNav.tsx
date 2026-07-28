@@ -7,13 +7,13 @@ import { cn } from "@/lib/utils";
 export type ViewName = "dashboard" | "home" | "pricing";
 
 const items = [
-  { id: "dashboard" as const, label: "Dashboard", icon: Gauge },
-  { id: "home" as const, label: "Home", icon: Home },
+  { id: "home" as const, label: "Performance", icon: Gauge },
+  { id: "dashboard" as const, label: "Dashboard", icon: Home },
   { id: "pricing" as const, label: "Pricing", icon: IndianRupee },
 ];
 
 type SideNavProps = {
-  view: ViewName;
+  view: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSelect: (view: ViewName) => void;
@@ -42,13 +42,15 @@ export function SideNav({
         animate={{ x: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 280, damping: 27 }}
       >
-        <div className="nav-arc" />
-        {items.map(({ id, label, icon: Icon }) => {
+        <svg className="nav-arc-svg" viewBox="0 0 100 200" preserveAspectRatio="none">
+          <path d="M 50 0 Q 0 100 50 200" className="nav-arc-path" />
+        </svg>
+        {items.map(({ id, label, icon: Icon }, index) => {
           const active = view === id;
           return (
             <button
               type="button"
-              className={cn("nav-item", active && "active")}
+              className={cn("nav-item", active && "active", index === 1 && "middle-item")}
               key={id}
               onClick={() => {
                 onSelect(id);
