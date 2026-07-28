@@ -1475,11 +1475,11 @@ button {
     top: -42px;
     width: 330px;
     height: 395px;
-    opacity: 0.62;
+    opacity: 0.76;
     filter: blur(18px);
     background:
-      radial-gradient(ellipse 48% 52% at 50% 78%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1) 36%, rgba(255, 255, 255, 0.025) 62%, transparent 82%),
-      linear-gradient(90deg, transparent 27%, rgba(255, 255, 255, 0.035) 37%, rgba(255, 255, 255, 0.21) 49%, rgba(255, 255, 255, 0.21) 51%, rgba(255, 255, 255, 0.035) 63%, transparent 73%);
+      radial-gradient(ellipse 48% 52% at 50% 78%, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.15) 36%, rgba(255, 255, 255, 0.04) 62%, transparent 82%),
+      linear-gradient(90deg, transparent 27%, rgba(255, 255, 255, 0.055) 37%, rgba(255, 255, 255, 0.31) 49%, rgba(255, 255, 255, 0.31) 51%, rgba(255, 255, 255, 0.055) 63%, transparent 73%);
     clip-path: none;
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.88), #000 58%, rgba(0, 0, 0, 0.5) 82%, transparent 100%);
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.88), #000 58%, rgba(0, 0, 0, 0.5) 82%, transparent 100%);
