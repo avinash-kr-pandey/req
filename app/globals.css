@@ -309,10 +309,10 @@ button {
   position: absolute;
   z-index: -1;
   top: -20px;
-  right: -24px;
+  left: -24px;
   width: 80px;
   height: 280px;
-  border-right: 1px dashed var(--muted);
+  border-left: 1px dashed var(--muted);
   border-radius: 50%;
   opacity: 0.75;
 }
@@ -390,10 +390,10 @@ button {
   position: absolute;
   z-index: -1;
   top: -20px;
-  left: -24px;
+  right: -24px;
   width: 80px;
   height: 280px;
-  border-left: 1px dashed var(--muted);
+  border-right: 1px dashed var(--muted);
   border-radius: 50%;
   opacity: 0.75;
 }
