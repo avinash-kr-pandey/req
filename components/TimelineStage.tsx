@@ -59,6 +59,22 @@ export function TimelineStage({ onGoHome }: { onGoHome?: () => void }) {
           transition={{ type: "spring", stiffness: 50, damping: 20 }}
         />
 
+        {WAYPOINTS.map((waypoint, index) => {
+          const reached = step >= index;
+          const current = step === index;
+
+          return (
+            <span
+              key={waypoint.label}
+              className={`timeline-stop${reached ? " reached" : ""}${current ? " current" : ""}`}
+              style={{ left: waypoint.x }}
+              aria-hidden="true"
+            >
+              <i />
+            </span>
+          );
+        })}
+
         <motion.div 
           className="timeline-car-marker"
           initial={{ left: "0%", opacity: 0 }}
@@ -90,14 +106,14 @@ export function TimelineStage({ onGoHome }: { onGoHome?: () => void }) {
         
         <motion.div
           className="timeline-truck"
-          initial={{ x: "150%" }}
+          initial={{ x: "70vw", y: "-50%" }}
           animate={{
-            x: step < 4 ? "150%" : step < 6 ? "0%" : "150%"
+            x: step < 4 ? "70vw" : step < 6 ? "-50%" : "70vw",
+            y: "-50%",
           }}
-          transition={{ type: "spring", stiffness: 35, damping: 15 }}
-          style={{ right: "-260px" }}
+          transition={{ type: "spring", stiffness: 32, damping: 16, mass: 1.15 }}
         >
-          <img src="/delivery_truck.png" alt="Delivery Truck" />
+          <img src="/delivery_truck_transparent.png" alt="Delivery Truck" />
         </motion.div>
       </div>
     </section>

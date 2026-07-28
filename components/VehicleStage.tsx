@@ -80,18 +80,35 @@ export function VehicleStage() {
       transition={{ duration: 0.28 }}
     >
       <div className="option-grid">
-        {options.map((option) => (
+        {options.map((option, index) => {
+          const fromCenter = [
+            { x: 151, y: 75 },
+            { x: -151, y: 75 },
+            { x: 151, y: -75 },
+            { x: -151, y: -75 },
+          ][index];
+
+          return (
           <motion.button
             type="button"
             key={option}
             className={cn("stage-option", selected === option && "selected")}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
+            initial={{ ...fromCenter, opacity: 0, scale: 0.7 }}
+            animate={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 150,
+              damping: 17,
+              delay: 0.22,
+            }}
             onClick={() => setSelected(option)}
           >
             {option}
           </motion.button>
-        ))}
+          );
+        })}
       </div>
       
       {/* Center Car Portrait Circle */}

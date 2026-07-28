@@ -494,6 +494,13 @@ button {
   width: 100%;
   min-height: 100svh;
   pointer-events: none;
+  opacity: 1;
+  transition: opacity 650ms ease, filter 650ms ease;
+}
+
+.stage-atmosphere.is-cleared {
+  opacity: 0;
+  filter: blur(18px);
 }
 
 .stage-atmosphere .ring-one {
@@ -734,6 +741,96 @@ button {
   width: 320px;
   top: 49%;
   gap: 42px 84px;
+}
+
+.home-performance-metrics {
+  position: absolute;
+  z-index: 6;
+  inset: 0;
+  pointer-events: none;
+}
+
+.home-performance-metric {
+  position: absolute;
+  display: flex;
+  min-width: 100px;
+  flex-direction: column;
+}
+
+.home-performance-metric strong {
+  color: var(--foreground);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.3px;
+}
+
+.home-performance-metric span {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 7px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.home-performance-metric.left-top {
+  top: 16%;
+  right: calc(50% + 96px);
+  text-align: right;
+}
+
+.home-performance-metric.left-middle {
+  top: 43%;
+  right: calc(50% + 120px);
+  text-align: right;
+}
+
+.home-performance-metric.left-bottom {
+  top: 70%;
+  right: calc(50% + 101px);
+  text-align: right;
+}
+
+.home-performance-metric.right-top {
+  top: 16%;
+  left: calc(50% + 96px);
+}
+
+.home-performance-metric.right-middle {
+  top: 43%;
+  left: calc(50% + 108px);
+}
+
+.home-performance-metric.right-bottom {
+  top: 70%;
+  left: calc(50% + 101px);
+}
+
+@media (min-width: 851px) {
+  .home-stage .center-car-portal {
+    width: 172px;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 0 34px rgba(255, 255, 255, 0.18),
+      0 24px 48px rgba(0, 0, 0, 0.72),
+      inset 0 0 34px rgba(0, 0, 0, 0.66);
+  }
+
+  .home-stage .center-car-portal::after {
+    border-top-color: rgba(255, 255, 255, 0.48);
+    box-shadow:
+      0 -2px 7px rgba(255, 255, 255, 0.34),
+      inset 0 5px 10px rgba(255, 255, 255, 0.07);
+  }
+
+  .home-stage .car-glow-ring {
+    border-color: rgba(255, 255, 255, 0.11);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.08);
+  }
+
+  .home-performance-metric strong {
+    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.08);
+  }
 }
 
 .home-play {
@@ -1363,6 +1460,50 @@ button {
   border-color: #df0509;
 }
 
+.timeline-stop {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 5px solid rgba(45, 41, 41, 0.95);
+  border-radius: 50%;
+  background: #696363;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.09);
+  transition: opacity 200ms ease, visibility 200ms ease, background-color 240ms ease,
+    border-color 240ms ease, box-shadow 240ms ease;
+}
+
+.timeline-stop i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.timeline-stop.reached {
+  border-color: rgba(116, 12, 16, 0.72);
+  background: #df0509;
+  opacity: 1;
+  visibility: visible;
+  box-shadow: 0 0 18px rgba(223, 5, 9, 0.34);
+}
+
+.timeline-stop.reached i {
+  background: #fff;
+}
+
+.timeline-stop.current {
+  box-shadow:
+    0 0 0 5px rgba(223, 5, 9, 0.12),
+    0 0 24px rgba(223, 5, 9, 0.55);
+}
+
 .timeline-car-marker {
   position: absolute;
   z-index: 3;
@@ -1421,12 +1562,12 @@ button {
   position: absolute;
   z-index: 2;
   top: 50%;
+  left: 50%;
   display: flex;
   width: 400px;
   height: auto;
   align-items: center;
   justify-content: center;
-  transform: translateY(-50%);
   pointer-events: none;
 }
 
@@ -1470,6 +1611,41 @@ button {
 .timeline-home-btn:hover {
   border-color: rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.2);
+}
+
+.certificate-stage {
+  position: relative;
+  display: grid;
+  width: min(650px, 68vw);
+  height: 265px;
+  place-items: center;
+}
+
+.certificate-orbit {
+  position: relative;
+  z-index: 8;
+  width: 194px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(16, 14, 14, 0.88);
+  box-shadow: 0 0 42px rgba(255, 255, 255, 0.14);
+}
+
+.certificate-orbit img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.32);
+}
+
+.certificate-ring {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: none;
+  pointer-events: none;
 }
 
 @media (max-width: 560px) {
@@ -1673,7 +1849,7 @@ button {
   .vehicle-stage .option-grid {
     top: 50%;
     width: 380px;
-    height: 130px;
+    height: 190px;
     display: grid;
     grid-template-columns: repeat(2, 78px);
     grid-template-rows: repeat(2, 40px);

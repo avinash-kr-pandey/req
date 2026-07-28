@@ -13,6 +13,7 @@ import { SideNav, type ViewName } from "@/components/SideNav";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { VehicleStage } from "@/components/VehicleStage";
 import { TimelineStage } from "@/components/TimelineStage";
+import { CertificateStage } from "@/components/CertificateStage";
 import { cn } from "@/lib/utils";
 
 export function Experience() {
@@ -20,9 +21,11 @@ export function Experience() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [plan, setPlan] = useState<string | null>(null);
   const [showChat, setShowChat] = useState(false);
+  const [certificateRevealed, setCertificateRevealed] = useState(false);
 
   useEffect(() => {
     setShowChat(false);
+    setCertificateRevealed(false);
   }, [view]);
 
   return (
@@ -96,11 +99,44 @@ export function Experience() {
         <Heading />
 
         {/* Persistent atmosphere: kept outside page transitions to prevent flashing. */}
-        <div className="stage-atmosphere" aria-hidden="true">
-          <div className="stage-ring ring-one" />
-          <div className="stage-ring ring-two" />
-          <div className="stage-ring ring-three" />
-          <div className="spotlight" />
+        <div
+          className={cn(
+            "stage-atmosphere",
+            view === "certifications" && certificateRevealed && "is-cleared",
+          )}
+          aria-hidden="true"
+        >
+          {["ring-one", "ring-two", "ring-three"].map((ring, index) => (
+            <motion.div
+              className={`stage-ring ${ring}`}
+              key={`${view}-${ring}`}
+              initial={
+                view === "dashboard"
+                  ? {
+                      opacity: 0,
+                      transform: "translate(-50%, -50%) scale(0.12)",
+                    }
+                  : false
+              }
+              animate={{
+                opacity: 1,
+                transform: "translate(-50%, -50%) scale(1)",
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 95,
+                damping: 16,
+                delay: view === "dashboard" ? index * 0.13 : 0,
+              }}
+            />
+          ))}
+          <motion.div
+            className="spotlight"
+            key={`${view}-spotlight`}
+            initial={view === "dashboard" ? { opacity: 0 } : false}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.65, delay: 0.2 }}
+          />
         </div>
 
         {/* Left Navigation */}
@@ -170,7 +206,9 @@ export function Experience() {
             {view === "timeline" && (
               <TimelineStage onGoHome={() => setView("home")} />
             )}
-            {view === "certifications" && <CenterPlaceholder title="Certifications" />}
+            {view === "certifications" && (
+              <CertificateStage onReveal={() => setCertificateRevealed(true)} />
+            )}
           </motion.div>
         </AnimatePresence>
 
