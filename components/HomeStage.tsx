@@ -6,14 +6,10 @@ export function HomeStage() {
   return (
     <motion.section
       className="home-stage"
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.65 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.28 }}
     >
-      <div className="stage-ring ring-one" />
-      <div className="stage-ring ring-two" />
-      <div className="spotlight" />
-      
       {/* Center Car Portrait Circle */}
       <div className="center-car-portal">
         <div className="car-glow-ring" />
@@ -22,4 +18,3 @@ export function HomeStage() {
     </motion.section>
   );
 }
-

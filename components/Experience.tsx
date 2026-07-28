@@ -60,6 +60,14 @@ export function Experience() {
         {/* Heading */}
         <Heading />
 
+        {/* Persistent atmosphere: kept outside page transitions to prevent flashing. */}
+        <div className="stage-atmosphere" aria-hidden="true">
+          <div className="stage-ring ring-one" />
+          <div className="stage-ring ring-two" />
+          <div className="stage-ring ring-three" />
+          <div className="spotlight" />
+        </div>
+
         {/* Left Navigation */}
         <SideNav
           view={view}
@@ -116,10 +124,10 @@ export function Experience() {
           <motion.div
             className="view-shell"
             key={view}
-            initial={{ opacity: 0, scale: 0.985 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.015 }}
-            transition={{ duration: 0.35 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
           >
             {view === "dashboard" && <VehicleStage />}
             {view === "home" && <HomeStage />}
@@ -130,7 +138,11 @@ export function Experience() {
           </motion.div>
         </AnimatePresence>
 
-        <LapTrack active={view === "pricing" ? 4 : view === "home" ? 2 : 0} />
+        <LapTrack
+          active={
+            view === "pricing" ? 4 : view === "home" || view === "dashboard" ? 2 : 0
+          }
+        />
         <BookingModal plan={plan} onClose={() => setPlan(null)} />
       </div>
     </main>
@@ -140,9 +152,6 @@ export function Experience() {
 function CenterPlaceholder({ title }: { title: string }) {
   return (
     <div className="home-stage">
-      <div className="stage-ring ring-one" />
-      <div className="stage-ring ring-two" />
-      <div className="spotlight" />
       <div className="center-placeholder-card">
         <h2>{title}</h2>
         <p>This section is coming soon.</p>
