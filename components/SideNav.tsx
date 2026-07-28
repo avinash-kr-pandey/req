@@ -4,11 +4,11 @@ import { Gauge, Home, IndianRupee, Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export type ViewName = "dashboard" | "home" | "pricing";
+export type ViewName = "dashboard" | "home" | "pricing" | "timeline";
 
 const items = [
-  { id: "dashboard" as const, label: "Dashboard", icon: Gauge },
-  { id: "home" as const, label: "Home", icon: Home },
+  { id: "home" as const, label: "Performance", icon: Gauge },
+  { id: "dashboard" as const, label: "Dashboard", icon: Home },
   { id: "pricing" as const, label: "Pricing", icon: IndianRupee },
 ];
 
