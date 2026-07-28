@@ -14,7 +14,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { VehicleStage } from "@/components/VehicleStage";
 
 export function Experience() {
-  const [view, setView] = useState<ViewName>("dashboard");
+  const [view, setView] = useState<ViewName>("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [plan, setPlan] = useState<string | null>(null);
 
@@ -35,7 +35,7 @@ export function Experience() {
               aria-label="Go back to dashboard"
               onClick={() => setView("dashboard")}
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={14} />
             </button>
           </div>
           <div className="top-actions">
@@ -46,13 +46,13 @@ export function Experience() {
         {/* Right side actions stack */}
         <div className="right-action-stack">
           <button type="button" className="action-circle-btn" aria-label="Download specification">
-            <Download size={18} />
+            <Download size={15} />
           </button>
           <button type="button" className="action-circle-btn" aria-label="Share setup">
-            <Share2 size={18} />
+            <Share2 size={15} />
           </button>
           <button type="button" className="action-circle-btn confirm-btn" aria-label="Confirm configuration">
-            <Check size={18} />
+            <Check size={15} />
           </button>
         </div>
 
@@ -73,20 +73,20 @@ export function Experience() {
           <div className="right-nav-items">
             <button type="button" className="right-nav-item" aria-label="Chat support">
               <span className="right-nav-icon">
-                <MessageSquare size={19} />
+                <MessageSquare size={15} />
               </span>
             </button>
             
             <button type="button" className="right-nav-item active" aria-label="Explore timeline">
               <span className="timeline-tooltip">Explore timeline</span>
               <span className="right-nav-icon">
-                <FileText size={19} />
+                <FileText size={15} />
               </span>
             </button>
             
             <button type="button" className="right-nav-item" aria-label="Certifications">
               <span className="right-nav-icon">
-                <Award size={19} />
+                <Award size={15} />
               </span>
             </button>
           </div>
@@ -107,7 +107,7 @@ export function Experience() {
           </motion.div>
         </AnimatePresence>
 
-        <LapTrack active={view === "pricing" ? 4 : view === "home" ? 1 : 3} />
+        <LapTrack active={view === "pricing" ? 4 : view === "home" ? 2 : 0} />
         <BookingModal plan={plan} onClose={() => setPlan(null)} />
       </div>
     </main>

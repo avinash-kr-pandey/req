@@ -57,7 +57,7 @@ export function SideNav({
               aria-current={active ? "page" : undefined}
             >
               <span className="nav-icon">
-                <Icon size={22} strokeWidth={1.8} />
+                <Icon size={18} strokeWidth={1.8} />
               </span>
               <span className="nav-label">{label}</span>
             </button>
