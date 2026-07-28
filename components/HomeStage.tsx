@@ -14,12 +14,10 @@ export function HomeStage() {
       <div className="stage-ring ring-two" />
       <div className="spotlight" />
       
-      <div className="vehicle-stage-content" style={{ justifyContent: "center" }}>
-        {/* Center Car Portrait Circle */}
-        <div className="center-car-portal">
-          <div className="car-glow-ring" />
-          <img src="/car.png" alt="Black sports car" className="portal-car-img" />
-        </div>
+      {/* Center Car Portrait Circle */}
+      <div className="center-car-portal">
+        <div className="car-glow-ring" />
+        <img src="/car.png" alt="Black sports car" className="portal-car-img" />
       </div>
     </motion.section>
   );

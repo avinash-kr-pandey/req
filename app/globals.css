@@ -472,17 +472,19 @@ button {
 
 .view-shell {
   min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
+  width: 100%;
 }
 
 .vehicle-stage,
 .home-stage {
-  position: absolute;
-  top: 52%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 960px;
+  position: relative;
+  width: min(960px, 95vw);
   height: 520px;
+  flex-shrink: 0;
 }
 
 .stage-ring {
@@ -991,8 +993,6 @@ button {
 
   .vehicle-stage,
   .home-stage {
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: min(960px, 95vw);
   }
 
