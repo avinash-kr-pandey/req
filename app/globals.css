@@ -405,28 +405,34 @@ button {
 
 .nav-label {
   display: flex;
-  height: 40px;
+  position: relative;
+  height: 32px;
   align-items: center;
+  justify-content: center;
   min-width: 0;
   max-width: 0;
-  overflow: hidden;
   padding: 0;
   border-radius: 20px;
-  background: linear-gradient(90deg, #484444, #292626);
-  color: white;
-  font-size: 14px;
+  background: transparent;
+  border: 1.5px solid transparent;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
   white-space: nowrap;
   opacity: 0;
   transition: 250ms ease;
+  margin-left: 10px;
 }
 
 .nav-item:hover .nav-label,
 .nav-item.active .nav-label {
-  min-width: 142px;
-  max-width: 142px;
-  padding: 0 27px;
+  min-width: 110px;
+  max-width: 110px;
+  padding: 0;
   opacity: 1;
-  box-shadow: inset -1px 0 0 #df0509;
+  background: linear-gradient(90deg, #484444, #292626);
+  border-color: #bf0405;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Right Side Navigation Styles */
@@ -520,18 +526,23 @@ button {
 
 .timeline-tooltip {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   right: 78px;
-  background: rgba(223, 5, 9, 0.12);
-  border: 1.5px solid #df0509;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  height: 32px;
+  padding: 0;
+  background: linear-gradient(90deg, #292626, #484444);
+  border: 1.5px solid #bf0405;
   color: #fff;
-  padding: 8px 18px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   white-space: nowrap;
-  backdrop-filter: blur(10px);
-  pointer-events: none;
-  box-shadow: 0 4px 15px rgba(223, 5, 9, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .mobile-menu {
@@ -1038,15 +1049,17 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 45px;
+  justify-content: flex-end;
+  padding-bottom: 15px;
+  height: 100%;
   opacity: 0.58;
 }
 
 .lap::before {
   content: "";
   position: absolute;
-  top: 25px;
-  bottom: 50px;
+  top: calc(25px + var(--offset, 0px));
+  bottom: 60px;
   width: 1px;
   border-left: 1.5px dashed rgba(255, 255, 255, 0.2);
   left: 50%;
@@ -1060,19 +1073,19 @@ button {
 }
 
 .lap:nth-child(2) {
-  transform: translateY(-15px);
+  --offset: -15px;
 }
 
 .lap:nth-child(3) {
-  transform: translateY(-11px);
+  --offset: -11px;
 }
 
 .lap:nth-child(4) {
-  transform: translateY(-34px);
+  --offset: -34px;
 }
 
 .lap:nth-child(5) {
-  transform: translateY(-32px);
+  --offset: -32px;
 }
 
 .lap.active {
@@ -1088,6 +1101,7 @@ button {
   border-radius: 50%;
   background: #777;
   box-sizing: content-box;
+  transform: translateY(var(--offset, 0px));
 }
 
 .lap.active .lap-dot {
@@ -1444,6 +1458,7 @@ button {
   .lap:nth-child(3),
   .lap:nth-child(4),
   .lap:nth-child(5) {
+    --offset: 0px;
     transform: none;
   }
 
@@ -2012,11 +2027,11 @@ button {
   .lap-dot { width: 12px; height: 12px; border-width: 5px; }
   .lap b { font-size: 9px; }
   .lap small { margin-top: 4px; font-size: 8px; }
-  .lap:nth-child(1) { transform: translateY(46px); }
-  .lap:nth-child(2) { transform: translateY(26px); }
-  .lap:nth-child(3) { transform: translateY(-1px); }
-  .lap:nth-child(4) { transform: translateY(-16px); }
-  .lap:nth-child(5) { transform: translateY(-25px); }
+  .lap:nth-child(1) { --offset: 46px; }
+  .lap:nth-child(2) { --offset: 26px; }
+  .lap:nth-child(3) { --offset: -1px; }
+  .lap:nth-child(4) { --offset: -16px; }
+  .lap:nth-child(5) { --offset: -25px; }
 
   .pricing-grid {
     top: calc(50% + 6px);
@@ -2357,6 +2372,7 @@ button {
   .lap:nth-child(4),
   .lap:nth-child(5) {
     padding-top: 34px;
+    --offset: 0px;
     transform: none;
   }
 

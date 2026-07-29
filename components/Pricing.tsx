@@ -51,7 +51,7 @@ export function Pricing({ onBook }: { onBook: (plan: string) => void }) {
       animate="visible"
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.12 } },
+        visible: {},
       }}
     >
       {plans.map((plan) => (
@@ -59,8 +59,16 @@ export function Pricing({ onBook }: { onBook: (plan: string) => void }) {
           key={plan.title}
           className={plan.popular ? "pricing-card popular" : "pricing-card"}
           variants={{
-            hidden: { opacity: 0, y: 24 },
-            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: -100 },
+            visible: { 
+              opacity: 1, 
+              y: 0,
+              transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 15
+              }
+            },
           }}
           whileHover={{ y: -8 }}
         >
