@@ -20,13 +20,17 @@ export function HomeStage() {
       transition={{ duration: 0.28 }}
     >
       <div className="home-performance-metrics">
-        {metrics.map((metric) => (
+        {metrics.map((metric, index) => (
           <motion.div
             className={`home-performance-metric ${metric.position}`}
             key={metric.label}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, delay: 0.08 }}
+            transition={{
+              duration: 0.36,
+              delay: 0.14 + (index % 3) * 0.07,
+              ease: "easeOut",
+            }}
           >
             <strong>{metric.value}</strong>
             <span>{metric.label}</span>
